@@ -41,6 +41,7 @@ input:hover {
     left:10px;
     color:slategray;
     margin:10px auto;
+    z-index: 1001;
 }
 
 #data_stamp {
@@ -48,5 +49,33 @@ input:hover {
 }
 
 #mTimeLapse {
-    display: none;
+    /*display: none;*/
+}
+
+#loading {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 40px;
+}
+
+#loader {
+    text-align: center;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+#loader-bar-container {
+    width: 80%;
+    height: 20px;
+    margin: 10px auto;
+    background: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#loader-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.2s ease;
 }

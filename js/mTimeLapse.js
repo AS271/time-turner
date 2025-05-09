@@ -1,6 +1,6 @@
-// https://github.com/mattlag/mTimeLapse
+// based on https://github.com/mattlag/mTimeLapse
 
-$(function(){
+function initializeTimeLapse(){
 
     /* Customize speed options here */
     var tl = {
@@ -21,12 +21,18 @@ $(function(){
         'si': 'false'
     };
 
+    $('#seekbar').on('input', function() {
+        tl.currFrame = parseInt(this.value, 10);
+        updateFrameManually();
+    });
+
     var f = $('#mTimeLapse');
 
     if(f){
         // Setup
         tl.img = f.children('img');
-        f.before('<div id="frames"><img id="frame_back"/><img id="frame_front"/></div><div id="controls"><div id="data_stamp"></div><br></div></div>');
+        $('#seekbar').attr('max', tl.img.length - 1);
+        f.before('<div id="frames"><img id="frame_back"/><img id="frame_front"/></div>');
 
         var c = $('#controls');
         c.append('<input type="button" value="Pause" id="pausebutton" onclick="toggleAdvance();"/><br>');
@@ -50,7 +56,18 @@ $(function(){
         tl.framefront.animate({'opacity': 1.0},{'duration': tl.fadeTime, 'queue':false});
 
         $('#data_stamp').html(getFrameAttribute('data-stamp'));
+        $('#seekbar').val(tl.currFrame);
         // console.log('\t\t>done');
+    }
+
+    function updateFrameManually() {
+        window.clearInterval(tl.si); // stop playback while seeking
+        tl.advancing = false;
+        $('#pausebutton').attr('value', 'Play');
+
+        tl.framefront.attr('src', getFrameAttribute('src'));
+        tl.framefront.css({ 'opacity': 1.0 }); // skip fade
+        $('#data_stamp').html(getFrameAttribute('data-stamp'));
     }
 
     function getFrameAttribute(attr) {
@@ -88,4 +105,4 @@ $(function(){
             $('#pausebutton').attr('value', 'Play');
         }
     };
-});
+}

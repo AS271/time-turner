@@ -3,16 +3,27 @@
 <head>
     <title>Time Turner</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script type='text/javascript' src='js/mTimeLapse.js'></script>
+    <script src="https://cdn.jsdelivr.net/gh/InvokIT/untar.js@master/untar.js"></script>
+    <script type="text/javascript" src="js/timeTurner.js"></script>
+    <script type="text/javascript" src="js/mTimeLapse.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/digitallytailored/classless@latest/classless.min.css">
 </head>
 <body>
+<div id="controls">
+    <div id="data_stamp">
+    </div>
+    <br>
+    <label for="seekbar"></label><input type="range" id="seekbar" min="0" value="0" step="1"><br>
+    </div>
+</div>
+<div id="loader">
+    <div id="loader-text">Loading timelapse: 0%</div>
+    <div id="loader-bar-container">
+        <div id="loader-bar"></div>
+    </div>
+</div>
 <div id="mTimeLapse">
-    <img src="images/bcnet-totals-13-18.png" data-stamp="1:18pm">
-    <img src="images/bcnet-totals-13-19.png" data-stamp="1:19pm">
-    <img src="images/bcnet-totals-13-20.png" data-stamp="1:20pm">
-    <img src="images/bcnet-totals-13-21.png" data-stamp="1:21pm">
-    <img src="images/bcnet-totals-13-22.png" data-stamp="1:22pm">
 </div>
 </body>
 </html>
