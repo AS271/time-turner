@@ -43,7 +43,6 @@
             }
         }
         loader.style.display = 'none';
-        loadingDiv.style.display = 'none';
         mTimeLapseDiv.style.display = 'block';
 
         initializeTimeLapse();

@@ -5,11 +5,11 @@ function initializeTimeLapse(){
     /* Customize speed options here */
     var tl = {
         'speeds': {
-            'Very_Fast': 100,
-            'Fast': 200,
-            'Medium': 500,
-            'Slow': 1000,
-            'Very_Slow': 2000
+            'Very_Fast': 10,
+            'Fast': 20,
+            'Medium': 50,
+            'Slow': 100,
+            'Very_Slow': 200
         },
         'advancing': false,
         'img':[],
