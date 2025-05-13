@@ -22,17 +22,10 @@ input:hover {
     color:white;
 }
 
-/*#frames {*/
-/*    width:98%;*/
-/*}*/
-
-/*#frame_front,*/
-/*#frame_back {*/
-/*    position: absolute;*/
-/*    top:10px;*/
-/*    left:10px;*/
-/*    width:98%;*/
-/*}*/
+input#seekbar {
+    width: 80%;
+    margin: 0 auto;
+}
 
 #mTimeLapse {
     position: relative;
@@ -41,27 +34,9 @@ input:hover {
     overflow: hidden;
 }
 
-/* Shared base style for both images */
-/*#frame_back,*/
-/*#frame_front {*/
-/*    display: block;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    object-fit: contain;*/
-/*}*/
-
 #frame_back {
     display: none;
 }
-
-/* Overlay behavior for the top layer */
-/*#frame_front {*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    pointer-events: none; !* so it doesn't block mouse interaction *!*/
-/*    display: none;*/
-/*}*/
 
 #controls {
     width:98%;
