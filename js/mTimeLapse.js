@@ -20,6 +20,15 @@ function initializeTimeLapse(){
         'frameback':false,
         'si': 'false'
     };
+    // set seekbar to current hour and minute
+    const date = new Date();
+    const hour = date.getHours();
+    const min = date.getMinutes();
+    const totMin = (hour * 60) + min;
+    tl.currFrame = totMin;
+    const offset = (tl.img.length - 1) - totMin;
+    tl.currFrame = tl.img.length - 1;
+    $('#seekbar').val(tl.currFrame);
 
     $('#seekbar').on('input', function() {
         tl.currFrame = parseInt(this.value, 10);
@@ -47,8 +56,6 @@ function initializeTimeLapse(){
     }
 
     function advanceFrame() {
-        // console.log('Advancing, currframe is ' + tl.currFrame);
-
         tl.frameback.attr('src', getFrameAttribute('src'));
         tl.currFrame = ((tl.currFrame + 1) % tl.img.length);
         tl.framefront.attr('src', getFrameAttribute('src'));
@@ -57,7 +64,6 @@ function initializeTimeLapse(){
 
         $('#data_stamp').html(getFrameAttribute('data-stamp'));
         $('#seekbar').val(tl.currFrame);
-        // console.log('\t\t>done');
     }
 
     function updateFrameManually() {
@@ -71,37 +77,29 @@ function initializeTimeLapse(){
     }
 
     function getFrameAttribute(attr) {
-        var s = tl.img[tl.currFrame].getAttribute(attr);
-
-        //logging
-        // console.log(tl.img[tl.currFrame]);
-        // console.log(`${attr} returns ${s}`);
-
+        var idx = (tl.currFrame - offset + tl.img.length) % tl.img.length;
+        var s = tl.img[idx].getAttribute(attr);
         return s || '';
     }
 
     function advance() {
         window.clearInterval(tl.si);
-        // console.log('Advancing, si=' + tl.si);
         tl.advancing = true;
         $('#pausebutton').attr('value', 'Pause');
         tl.si = setInterval(advanceFrame, (tl.fadeTime + tl.sitTime));
     }
 
     window.setSpeed = function(name) {
-        // console.log('setSpeed ' + name);
         tl.fadeTime = tl.speeds[name] || 500;
         advance();
     };
 
     window.toggleAdvance = function() {
         tl.advancing = !tl.advancing;
-        // console.log('ToggleAdvance - advancing = ' + tl.advancing);
 
         if(tl.advancing) advance();
         else {
             window.clearInterval(tl.si);
-            // console.log('clearInterval cancelled for ' + tl.si);
             $('#pausebutton').attr('value', 'Play');
         }
     };
